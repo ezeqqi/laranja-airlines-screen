@@ -1,43 +1,27 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header class="bg-orange-5" elevated>
+  <q-layout view="hHh lpR fFf">
+    <q-header bordered class="bg-orange-5 text-white" height-hint="98">
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title> Voe Laranja </q-toolbar-title>
+        <q-toolbar-title shrink> Laranja </q-toolbar-title>
       </q-toolbar>
+
+      <q-tabs align="right">
+        <q-route-tab to="/page1" label="Page One" />
+        <q-route-tab to="/page2" label="Page Two" />
+        <q-route-tab to="/page3" label="Page Three" />
+      </q-tabs>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
-        <q-item-label header> Pages </q-item-label>
-      </q-list>
-    </q-drawer>
+    <q-page-container>
+      <router-view />
+    </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "MainLayout",
-
-  setup() {
-    const leftDrawerOpen = ref(false);
-
-    return {
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
-  },
 });
 </script>
