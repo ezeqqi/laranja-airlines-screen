@@ -6,9 +6,9 @@
       </q-toolbar>
 
       <q-tabs align="right">
-        <q-route-tab to="/page1" label="Page One" />
-        <q-route-tab to="/page2" label="Page Two" />
-        <q-route-tab to="/page3" label="Page Three" />
+        <q-route-tab to="/" label="Page One" />
+        <q-route-tab to="/selectflight" label="Page Two" />
+        <q-route-tab to="/dadospassageiro" label="Page Three" />
       </q-tabs>
     </q-header>
 

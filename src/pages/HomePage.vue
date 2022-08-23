@@ -11,7 +11,7 @@
           <div class="q-pa-md row justify-evenly">
             <q-input
               class="col-5"
-              v-model="password"
+              v-model="form.origin"
               filled
               type="text"
               hint="Origem"
@@ -23,7 +23,7 @@
 
             <q-input
               class="col-5"
-              v-model="password"
+              v-model="form.destiny"
               filled
               :type="text"
               hint="Destino"
@@ -35,7 +35,7 @@
 
             <q-input
               class="col-5"
-              v-model="time"
+              v-model="form.data_volta"
               filled
               type="date"
               hint="Data de volta"
@@ -43,7 +43,7 @@
 
             <q-input
               class="col-5"
-              v-model="date"
+              v-model="form.data_ida"
               filled
               type="date"
               hint="Data de ida"
@@ -71,13 +71,12 @@ export default defineComponent({
   name: "HomePage",
   setup() {
     return {
-      password: ref(""),
-      email: ref(""),
-      search: ref(""),
-      tel: ref(""),
-      url: ref(""),
-      time: ref(""),
-      date: ref(""),
+      form: {
+        origin: ref(""),
+        destiny: ref(""),
+        data_ida: ref(null),
+        data_volta: ref(null),
+      },
     };
   },
 });
