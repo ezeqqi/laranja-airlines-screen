@@ -8,7 +8,7 @@
     >
       <q-step
         :name="1"
-        title="Select campaign settings"
+        title="Selecionar Passagens"
         icon="settings"
         :done="store.stepper.step > 1"
       >
@@ -19,8 +19,8 @@
 
       <q-step
         :name="2"
-        title="Create an ad group"
-        caption="Optional"
+        title="Dados do Passageiro"
+        caption="Login"
         icon="create_new_folder"
         :done="store.stepper.step > 2"
       >
@@ -28,18 +28,18 @@
         keywords.
       </q-step>
 
-      <q-step :name="3" title="Ad template" icon="assignment" disable>
+      <q-step :name="3" title="Escolher poltrona" icon="assignment">
         This step won't show up because it is disabled.
       </q-step>
 
-      <q-step :name="4" title="Create an ad" icon="add_comment">
+      <q-step :name="4" title="Pagamento" icon="add_comment">
         Try out different ad text to see what brings in the most customers, and
         learn how to enhance your ads using features like ad extensions. If you
         run into any problems with your ads, find out how to tell if they're
         running and how to resolve approval issues.
       </q-step>
 
-      <template v-slot:navigation>
+      <!--  <template v-slot:navigation>
         <q-stepper-navigation>
           <q-btn
             @click="store.stepper.nextStep()"
@@ -55,7 +55,7 @@
             class="q-ml-sm"
           />
         </q-stepper-navigation>
-      </template>
+      </template> -->
     </q-stepper>
   </div>
 </template>
