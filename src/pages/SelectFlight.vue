@@ -1,63 +1,26 @@
 <template>
-  <q-page class="flex q-pa-md">
+  <q-page class="q-pa-md">
     <BuyTicketStepperVue />
-    <div class="q-pa-md">
-      <q-table
-        title="Treats"
-        :rows="rows"
-        :columns="columns"
-        row-key="name"
-        selection="multiple"
-        v-model:selected="selected"
-        :filter="filter"
-        grid
-        hide-header
+    <q-table
+      title="Selecionar Passagem"
+      :rows="rows"
+      :columns="columns"
+      row-key="name"
+      selection="single"
+      v-model:selected="selected"
+      hide-pagination
+      hide-selected-banner
+      bordered
+    >
+    </q-table>
+    <div class="q-pa-sm col-12">
+      <q-btn
+        v-show="selected.length > 0"
+        color="blue-5"
+        :to="{ name: 'dadosPassageiro' }"
+        label="Selecionar Voo"
       >
-        <template v-slot:top-right>
-          <q-input
-            borderless
-            dense
-            debounce="300"
-            v-model="filter"
-            placeholder="Search"
-          >
-            <template v-slot:append>
-              <q-icon name="search" />
-            </template>
-          </q-input>
-        </template>
-
-        <template v-slot:item="props">
-          <div
-            class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-style-transition"
-            :style="props.selected ? 'transform: scale(0.95);' : ''"
-          >
-            <q-card :class="props.selected ? 'bg-grey-2' : ''">
-              <q-card-section>
-                <q-checkbox
-                  dense
-                  v-model="props.selected"
-                  :label="props.row.name"
-                />
-              </q-card-section>
-              <q-separator />
-              <q-list dense>
-                <q-item
-                  v-for="col in props.cols.filter((col) => col.name !== 'desc')"
-                  :key="col.name"
-                >
-                  <q-item-section>
-                    <q-item-label>{{ col.label }}</q-item-label>
-                  </q-item-section>
-                  <q-item-section side>
-                    <q-item-label caption>{{ col.value }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-card>
-          </div>
-        </template>
-      </q-table>
+      </q-btn>
     </div>
   </q-page>
 </template>
@@ -72,57 +35,75 @@ export default defineComponent({
   components: {
     BuyTicketStepperVue,
   },
+
   setup() {
     const columns = [
       {
-        name: "origem",
+        name: "Origem",
         required: true,
         label: "Origem",
         align: "left",
-        field: "ORIGEM",
+        field: (row) => row.name,
+        //format: (val) => `${val}`,
         sortable: true,
       },
       {
         name: "destino",
-        align: "center",
+        align: "left",
         label: "Destino",
         field: "destino",
         sortable: true,
       },
       {
+        name: "duracao",
+        align: "left",
+        label: "Duração",
+        field: "duracao",
+        sortable: true,
+      },
+
+      {
         name: "modalidade",
+        align: "left",
         label: "Modalidade",
         field: "modalidade",
         sortable: true,
       },
-      { name: "preço", label: "Preço", field: "Preço", sortable: true },
+      { name: "preco", align: "left", label: "Preço", field: "preco" },
     ];
 
     const rows = [
       {
         name: "SDU - 15:40",
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
+        origem: "SDU - 15:40",
+        destino: "POA - 17:30",
+        duracao: "01:50",
+        modalidade: "Direto",
+        preco: "R$ 500,00",
       },
       {
-        name: "Ice cream sandwich",
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
+        name: "SDU - 16:00",
+        origem: "SDU - 16:00",
+        destino: "POA - 19:30",
+        duracao: "03:30",
+        modalidade: "Com escalas",
+        preco: "R$ 390,00",
       },
       {
-        name: "Eclair",
-        calories: 262,
-        fat: 16.0,
-        carbs: 23,
+        name: "SDU - 12:00",
+        origem: "SDU - 12:00",
+        destino: "POA - 13:50",
+        duracao: "01:50",
+        modalidade: "Direto",
+        preco: "R$ 450,00",
       },
     ];
+
     return {
-      filter: ref(""),
+      expanded: ref([]),
+      selected: ref([]),
       columns,
       rows,
-      selected: ref([]),
     };
   },
 });
